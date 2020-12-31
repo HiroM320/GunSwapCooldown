@@ -1,0 +1,18 @@
+main: ${project.groupId}.GunSwapCooldown
+name: ${project.artifactId}
+version: ${project.version}
+api: 1.12.2
+api-version: 1.12.2
+prefix: GSC
+description: make cooldown when swapping crackshot weapon
+authors: [Hiro_m]
+author: Hiro_m
+depend:
+  - CrackShot
+  - ProtocolLib
+
+commands:
+  gsc:
+    description: demo command
+    usage: /<command> help
+    default: true
