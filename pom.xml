@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.github.hirom320.gunswapcooldown</groupId>
+  <artifactId>GunSwapCooldown</artifactId>
+  <version>2020.12.31.1</version>
+
+  <packaging>jar</packaging>
+
+  <name>GunSwapCooldown</name>
+  <url>https://hirom320.github.io/</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.13</maven.compiler.source>
+    <maven.compiler.target>1.13</maven.compiler.target>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>1.12.2-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- ref: https://qiita.com/ccaiueo/items/bd2843e812016a3a900b -->
+    <dependency>
+      <groupId>com.shampaggon.crackshot</groupId>
+      <artifactId>CrackShot</artifactId>
+      <version>0.98.9</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/CrackShot.jar</systemPath>           
+    </dependency>
+</dependencies>
+
+<build>
+  <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+  <resources>
+    <resource>
+      <targetPath>.</targetPath>
+      <filtering>true</filtering>
+      <directory>${project.basedir}/src/main/resources</directory>
+    </resource>
+  </resources>
+</build>
+
+</project>
