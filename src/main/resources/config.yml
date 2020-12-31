@@ -1,3 +1,5 @@
-Sound: ENTITY_PLAYER_LEVELUP
-Volume: 1
-Pitch: 1
+Groups:
+  AR: 10
+
+AR:
+  - AK-47M
