@@ -27,8 +27,7 @@ public class ItemHeldListener implements Listener {
             return;
         }
 
-        // クールダウンのデフォルトは10ticks(0.5sec)
-        int cooldown = 10;
+        int cooldown = plugin.configManager.getDefaultCooldown();
 
         // key: グループ名, value: 武器リスト
         for(Map.Entry<String, ArrayList<String>> entry : plugin.groups.entrySet()) {
