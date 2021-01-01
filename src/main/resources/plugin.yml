@@ -9,7 +9,6 @@ authors: [Hiro_m]
 author: Hiro_m
 depend:
   - CrackShot
-  - ProtocolLib
 
 commands:
   gsc:
