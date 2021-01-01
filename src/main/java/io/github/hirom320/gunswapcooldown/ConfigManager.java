@@ -1,5 +1,6 @@
 package io.github.hirom320.gunswapcooldown;
 
+import org.bukkit.Sound;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -13,6 +14,7 @@ public class ConfigManager {
     GunSwapCooldown plugin;
     private FileConfiguration config;
 
+
     /**
      * コンストラクタ
      * @param plugin {@link GunSwapCooldown}
@@ -20,6 +22,40 @@ public class ConfigManager {
     public ConfigManager(GunSwapCooldown plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
+    }
+
+
+    /**
+     * デフォルトのクールダウン時間を取得
+     * @return
+     */
+    public int getDefaultCooldown() {
+        return config.getInt("DefaultCooldown", 0);
+    }
+
+
+    /**
+     * クールダウン中射撃時のサウンドを取得
+     * @return
+     */
+    public Sound getSoundOnCd() {
+        return Sound.valueOf(plugin.getConfig().getString("Sound"));
+    }
+
+    /**
+     * クールダウン中射撃時のボリュームを取得
+     * @return
+     */
+    public float getVolumeOnCd() {
+        return (float) plugin.getConfig().getDouble("Volume");
+    }
+
+    /**
+     * クールダウン中の射撃時のピッチを取得
+     * @return
+     */
+    public float getPitchOnCd() {
+        return (float) plugin.getConfig().getDouble("Pitch");
     }
 
     /**
@@ -31,6 +67,7 @@ public class ConfigManager {
         return config.getInt("Groups."+group);
     }
 
+
     /**
      * グループに属している武器の名前をStringのListで取得
      * @param group グループ名
@@ -39,6 +76,7 @@ public class ConfigManager {
     public List<String> getWeapons(String group) {
         return config.getStringList(group);
     }
+
 
     /**
      * 武器の属するグループを取得
@@ -56,6 +94,7 @@ public class ConfigManager {
         // 見つからなかったらnull
         return null;
     }
+
 
     /**
      * グループ作成
@@ -81,6 +120,7 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("cooldown: "+cooldown);
     }
 
+
     /**
      * グループを削除
      * @param group
@@ -95,9 +135,8 @@ public class ConfigManager {
         saveConfig();
 
         plugin.sendDebugLogInfo("removed group: "+group);
-
-
     }
+
 
     /**
      * グループにクールダウン設定
@@ -119,6 +158,7 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("set "+group+" cooldown: "+cooldown);
 
     }
+
 
     /**
      * グループに武器とそのクールダウンを設定
@@ -149,6 +189,7 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("addWeapon: done");
     }
 
+
     /**
      * グループから武器を削除
      * @param group
@@ -172,6 +213,7 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("removeWeapon: done");
     }
 
+
     /**
      * コンフィグファイルをセーブ
      */
@@ -192,6 +234,7 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("reloaded config");
     }
 
+
     /** 
      * 全てのグループとそのクールダウンをMapで取得
      * @return
@@ -207,6 +250,7 @@ public class ConfigManager {
         // Mapが入ったListを返す
         return groupCooldowns;
     }
+
 
     /** 
      * 全グループとそれに属する武器一覧を取得
