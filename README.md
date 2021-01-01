@@ -24,8 +24,10 @@ config.ymlの各項目を説明します。
 
 ```yaml:config.yml
 Sound: ENTITY_PLAYER_LEVELUP
-Volume: 1
-Pitch: 1
+Volume: 1.0
+Pitch: 1.0
+
+DefaultCooldown: 10
 
 Groups:
   AR: 10
