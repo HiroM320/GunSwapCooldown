@@ -13,19 +13,38 @@ public class ConfigManager {
     GunSwapCooldown plugin;
     private FileConfiguration config;
 
+    /**
+     * コンストラクタ
+     * @param plugin {@link GunSwapCooldown}
+     */
     public ConfigManager(GunSwapCooldown plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
 
+    /**
+     * グループのクールダウンを取得
+     * @param group グループ名
+     * @return クールダウン
+     */
     public int getGroupCooldown(String group) {
         return config.getInt("Groups."+group);
     }
 
+    /**
+     * グループに属している武器の名前をStringのListで取得
+     * @param group グループ名
+     * @return 武器名のList
+     */
     public List<String> getWeapons(String group) {
         return config.getStringList(group);
     }
 
+    /**
+     * 武器の属するグループを取得
+     * @param weapon
+     * @return 武器の属するグループ名
+     */
     public String getWeaponGroup(String weapon) {
         for( String group : config.getConfigurationSection("Groups").getKeys(false)) {
             // グループ内に武器が見つかったら
@@ -38,7 +57,11 @@ public class ConfigManager {
         return null;
     }
 
-    // グループ作成
+    /**
+     * グループ作成
+     * @param group
+     * @param cooldown
+     */
     public void createGroup(String group, int cooldown) {
         if(config.isSet("Groups."+group)) {
             plugin.sendDebugLogInfo("group: exists");
@@ -58,7 +81,10 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("cooldown: "+cooldown);
     }
 
-    // グループ削除
+    /**
+     * グループを削除
+     * @param group
+     */
     public void removeGroup(String group) {
         config.set("Groups."+group, null);
         config.set(group, null);
@@ -73,7 +99,11 @@ public class ConfigManager {
 
     }
 
-    // グループにクールダウン設定
+    /**
+     * グループにクールダウン設定
+     * @param group
+     * @param cooldown
+     */
     public void setGroupCooldown(String group, int cooldown) {
         if(!config.isSet("Groups."+group)) {
             plugin.sendDebugLogInfo("group: not exists");
@@ -90,7 +120,12 @@ public class ConfigManager {
 
     }
 
-    // グループに武器とそのクールダウンを設定
+    /**
+     * グループに武器とそのクールダウンを設定
+     * @param group
+     * @param weapon
+     * @throws InvalidConfigurationException groupが正しくない
+     */
     public void addWeapon(String group, String weapon) throws InvalidConfigurationException {
         if(!config.isSet("Groups."+group)) {
             plugin.sendDebugLogInfo("addWeapon: no group");
@@ -114,7 +149,12 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("addWeapon: done");
     }
 
-    // グループから武器を削除
+    /**
+     * グループから武器を削除
+     * @param group
+     * @param weapon
+     * @throws InvalidConfigurationException
+     */
     public void removeWeapon(String group, String weapon) throws InvalidConfigurationException {
         if(!config.isSet("Groups."+group)) {
             plugin.sendDebugLogInfo("removeWeapon: no group");
@@ -132,10 +172,16 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("removeWeapon: done");
     }
 
+    /**
+     * コンフィグファイルをセーブ
+     */
     public void saveConfig() {
         plugin.saveConfig();
     }
 
+    /**
+     * コンフィグファイルをリロード
+     */
     public void reloadConfig() {
         plugin.reloadConfig();
         config = plugin.getConfig();
@@ -146,6 +192,10 @@ public class ConfigManager {
         plugin.sendDebugLogInfo("reloaded config");
     }
 
+    /** 
+     * 全てのグループとそのクールダウンをMapで取得
+     * @return
+     */
     public Map<String, Integer> getGroupCooldowns() {
         Map<String, Integer> groupCooldowns = new HashMap<>();
 
@@ -158,6 +208,10 @@ public class ConfigManager {
         return groupCooldowns;
     }
 
+    /** 
+     * 全グループとそれに属する武器一覧を取得
+     * @return
+     */
     public Map<String, ArrayList<String>> getGroups() {
         Map<String, ArrayList<String>> groups = new HashMap<>();
 
