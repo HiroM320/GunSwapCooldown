@@ -24,9 +24,9 @@
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
-</repositories>
+  </repositories>
 
-<dependencies>
+  <dependencies>
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
@@ -41,17 +41,17 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/../lib/CrackShot.jar</systemPath>           
     </dependency>
-</dependencies>
+  </dependencies>
 
-<build>
-  <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-  <resources>
-    <resource>
-      <targetPath>.</targetPath>
-      <filtering>true</filtering>
-      <directory>${project.basedir}/src/main/resources</directory>
-    </resource>
-  </resources>
-</build>
+  <build>
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+    <resources>
+      <resource>
+        <targetPath>.</targetPath>
+        <filtering>true</filtering>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+  </build>
 
 </project>
